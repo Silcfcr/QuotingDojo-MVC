@@ -1,24 +1,22 @@
 const mongoose = require( 'mongoose' );
 
 const UserSchema = new mongoose.Schema({
-    firstName : {
+    name : {
         type : String,
         required : true,
         minlength : 3,
         maxlength : 20
     },
-    lastName : {
+    quote : {
         type : String,
         required : true,
-        minlength : 3,
-        maxlength : 20
+        minlength : 5,
+        maxlength : 200
     },
-    id : {
-        type : Number,
-        required : true,
-        unique : true
-    }
+
 });
+
+UserSchema.set('timestamps', true);
 
 const User = mongoose.model( 'users', UserSchema );
 
@@ -32,6 +30,7 @@ const UserModel = {
     getUserById : function( userId ){
         return User.findOne({ id : userId });
     }
+
 };
 
 module.exports = {UserModel};
